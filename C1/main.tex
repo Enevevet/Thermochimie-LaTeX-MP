@@ -1,0 +1,854 @@
+% Packages utilisés : fontenc, geometry, indentfirst, marvosym, esvect, wrapfig, physics, amssymb, mathtools, mhchem (v4), chemfig, adjustbox, tikz, fancyhdr, lastpage, siunitx, tcolorbox, ifthen, caption, multirow, float.
+
+
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[greek, french]{babel} %frquote pour guillemets
+\frenchsetup{StandardItemLabels=true} % liste à puces par défaut
+\usepackage{indentfirst} %indente qu'après un titre
+\usepackage{marvosym} %symbol de la main qui écrit
+\usepackage{esvect} %jolis vecteurs
+\usepackage{wrapfig} %figures wrapped
+\usepackage{physics} % macros de Physique
+\usepackage{amssymb} % Symboles de Maths
+\usepackage{mathtools} % Maths
+\usepackage[version=4]{mhchem} % écrire des formules de chimie plus facilement
+\usepackage{chemfig} % traçage de molécules
+\usepackage{adjustbox} % pour les tableaux trop larges
+\usepackage{enumitem} % pour garder un itemize et la ligne qui précède
+
+% TikZ
+\usepackage{tikz} % Outil de dessin TikZ
+\usetikzlibrary{positioning, decorations, decorations.pathmorphing, svg.path, calc}
+
+\newcommand{\serpeg}{\begin{tikzpicture}[scale=0.05, rotate=90] %Dessin serpe gauloise
+    \draw[fill=black] svg "m 85.80084559909016,214.0848263194619 -2.06515398583127,10.6699622601283 C 63.40206828227082,245.1959395037747 34.8434652071972,311.9906290729065 11.3692540264214,288.5164178921307 -12.10495715435405,265.0422067113552 54.64670837340594,236.4405795949098 75.08785929759045,216.1069562639218 l 10.71298630149971,-2.0221299444599 z";
+    \draw[fill=black] svg "m 108.7419167440706,206.736972338917 -19.8340830722545,19.8340830722545 c 1.52410126960524,2.0394970349658 1.73127876250413,4.4641831949897 0.38721637234333,5.8082455851505 -1.5360713030409,1.536071303041 -4.54941029245121,1.0437150858417 -6.71175045395158,-1.1186250756586 L 68.55746210310377,217.2348384335593 c -2.16234016150031,-2.1623401615003 -2.61167233732806,-5.1326551095392 -1.07560103428716,-6.6687264125801 1.34406239016084,-1.3440623901608 3.76874855018474,-1.1368848972619 5.80824558515053,0.3872163723434 l 19.83408307225447,-19.8340830722546 15.61772701784898,15.617727017849 z";
+    \draw[fill=black] svg "m 235.6535816959719,31.9640591939666 c 43.897708386389,43.897708386389 43.8977083863892,115.0331004398762 0,158.930808826265 -43.7245047247137,43.724504724714 -114.4767693137891,43.8957526893702 -158.41452032980723,0.5162884964578 l 16.95147230036508,-20.5654917755697 c 38.81906059246856,27.569114427687 92.07923865044546,24.7740577145076 125.80229697022164,-8.9490006052689 C 257.7671841813877,124.1223105912145 256.7199821471888,61.89341216770936 217.6695324026912,22.84296242321181 211.1465363002555,16.3199663207761 203.9694091953853,10.84862686886356 196.3726319238062,6.450802660676091 210.6929035158315,11.9233868411129 224.1124996231,20.42297712109476 235.6535816959719,31.9640591939666 z";
+\end{tikzpicture}}
+
+\newcommand{\nez}{\begin{tikzpicture}[scale=0.0015] %Dessin sens Physique
+    \draw[fill=black] svg "M5613.5,4620.6C4873.8,3491.5,3821,1773.4,2823,69c-547.9-935.4-655.5-1207.4-655.5-1673.1c0-238.7,35.2-403.1,117.4-571.4c240.7-483.3,771-821.9,1540-982.3c324.8-66.5,526.4-90,964.7-107.6c332.7-11.7,391.4-19.6,461.8-56.7c107.6-54.8,189.8-152.6,244.6-291.6c43-103.7,47-140.9,45-455.9c0-272-9.8-381.6-41.1-528.3c-23.5-101.8-39.1-189.8-35.2-191.8c3.9-3.9,33.3,74.4,64.6,176.1c209.4,653.6,176.1,1129.1-97.8,1375.7c-135,121.3-264.2,164.4-569.4,187.9c-630.1,47-1164.3,172.2-1569.4,367.9c-628.1,305.3-886.4,753.4-763.2,1326.7c64.6,311.1,129.2,444.2,649.7,1356.1C4143.9,1691.2,4893.3,3061,5525.4,4295.8c303.3,591,364,714.2,352.2,714.2C5873.7,5010,5754.4,4833.9,5613.5,4620.6z";
+    \draw[fill=black] svg "M7407.9-968.2c-3.9-5.9,7.8-72.4,29.4-150.7c86.1-332.7,60.7-731.8-62.6-947.1c-68.5-115.5-236.8-293.5-405-422.7c-125.2-95.9-428.6-285.7-546-342.4c-70.4-33.3-90-64.6-39.1-64.6c58.7,0,495.1,154.6,636,225c342.5,172.2,596.8,401.2,739.7,665.3c70.5,133.1,72.4,142.9,72.4,342.5s-1.9,213.3-74.4,356.2C7664.2-1114.9,7458.8-917.3,7407.9-968.2z";
+    \draw[fill=black] svg "M4261.3-2026.8c-164.4-35.2-471.6-185.9-536.2-264.2c-109.6-129.2-43.1-197.7,232.9-242.7c219.2-35.2,250.5-31.3,471.6,58.7c86.1,37.2,230.9,76.3,320.9,90c211.3,29.3,645.8,13.7,1074.3-41.1c174.2-23.5,322.9-37.2,328.8-31.3c62.6,62.6-634,340.5-1056.7,420.7C4848.3-1987.7,4460.9-1983.8,4261.3-2026.8z";
+\end{tikzpicture}}
+
+
+% Pied de page et en-tête
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% Style de première page (sans header)
+\fancypagestyle{plainsh}{
+    \fancyhf{}%
+    \renewcommand{\headrulewidth}{0.0pt}
+    \cfoot{\footnotesize Page \textbf{\thepage}\ sur \textbf{\pageref{LastPage}}}
+}
+
+% style général
+\fancypagestyle{plain}{
+    \fancyhf{}%
+    \setlength{\headheight}{14.0pt} 
+    \fancyhead[R]{\large{C1 -- Applications du premier principe à la transformation chimique}}
+    \fancyhead[L]{\large{MP1, 2021--2022}}
+    \cfoot{\footnotesize Page \textbf{\thepage}\ sur \textbf{\pageref{LastPage}}}
+}
+% choix du style général
+\pagestyle{plain}
+
+
+%titres
+\renewcommand{\abstractname}{Introduction}
+\usepackage{sectsty}
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\thesection\ \arabic{subsection})}
+\renewcommand{\thesubsubsection}{\thesection\ \arabic{subsection})\ \alph{subsubsection})}
+
+%Définition de la taille \HUGE
+\usepackage{fix-cm}
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{50}{60}} 
+\makeatother
+
+% Personnalisation du titre
+\makeatletter
+\renewcommand\maketitle{
+    \allsectionsfont{\sffamily}
+    \thispagestyle{plainsh}
+    \vspace*{2cm}
+    \begin{center}
+        \begin{minipage}{0.1\linewidth}   
+            \begin{tikzpicture}
+                \node [rotate=90] {\HUGE\textbf{C1}};    
+            \end{tikzpicture}
+        \end{minipage}
+        \hspace{0.5em}
+        \begin{minipage}{0.8\linewidth}
+            {\raggedright
+            {\Huge \bfseries \sffamily \@title }\\[1ex] 
+            {\Large  \@author}\\[4ex]}  
+        \end{minipage}
+    \end{center}
+    \vspace{0.5cm}
+}
+\makeatother
+
+% package pour les unités SI
+\usepackage[load-configurations = abbreviations]{siunitx}
+\sisetup{locale=FR, inter-unit-product=\ensuremath{{\cdot}}, detect-all, retain-explicit-plus}
+\DeclareSIUnit{\ions}{\mathrm{ions}}
+
+% cases
+
+\usepackage{tcolorbox} %Pour les boxes de coleur
+\tcbuselibrary{skins, breakable}
+\usepackage{ifthen} % algorithmique
+
+\definecolor{lav}{HTML}{800080}
+\newtcolorbox{enonce}[1][]{%
+    enhanced, attach boxed title to top left=
+{xshift=-2mm,yshift=-2mm}, boxed title style={size=small,colback=blue!80}, breakable,colframe=blue!80,colback=blue!10, title={#1}
+}
+
+\newtcolorbox{remarque}[1][]{%
+    enhanced, attach boxed title to top left=
+{xshift=-2mm,yshift=-2mm}, boxed title style={size=small,colback=lav}, breakable,colframe=lav,colback=lav!10, title={#1}
+}
+
+\newtcolorbox{important}[1][]{%
+    enhanced, attach boxed title to top left=
+{xshift=-2mm,yshift=-2mm}, boxed title style={size=small,colback=red!75}, breakable,colframe=red!75,colback=red!10, title={#1}
+}
+
+% Types d'écrits
+\newtcolorbox{tableau}[1][]{% %ce qu'il faut recopier au tableau
+    grow to left by=0.5cm, enhanced, frame hidden, left=1.25cm, right=0cm, borderline west = {0.5pt}{1cm}{red, dashed}, colback=white, breakable, segmentation style={}, overlay={%
+        \ifthenelse{\value{tcbbreakpart}=1}{% seulement pour le premier morceau
+            \begin{tcbclipframe}
+                \coordinate (X) at ([xshift=5mm,yshift=-5mm]frame.north west);
+                \node[inner sep=1mm, color=black, font=\bfseries] at (X) {\LARGE{\WritingHand}};
+            \end{tcbclipframe}
+        }{}
+    }
+}
+
+\newtcolorbox{appnum}[1][]{% %application numérique
+    grow to left by=0.5cm, enhanced, frame hidden, left=1.25cm, right=0cm, borderline west = {0.4pt}{1cm}{red, decoration = {zigzag, segment length = 2mm, amplitude = 0.4mm}}, opacityfill=0, breakable, segmentation style={} , overlay={%
+        \ifthenelse{\value{tcbbreakpart}=1}{% seulement pour le premier morceau
+            \begin{tcbclipframe}
+                \coordinate (X) at ([xshift=5mm,yshift=-5mm]frame.north west);
+                \node[inner sep=1mm, color=black, font=\bfseries] at (X) {\serpeg};
+            \end{tcbclipframe}
+        }{}
+    }
+}
+
+\newtcolorbox{sensphy}[1][]{% %Discussion physique !
+    grow to left by=0.5cm, enhanced, frame hidden, left=1.25cm, right=0cm, borderline west = {0.8pt}{1cm}{red, dotted}, opacityfill=0, breakable, segmentation style={} , overlay={%
+        \ifthenelse{\value{tcbbreakpart}=1}{% seulement pour le premier morceau
+            \begin{tcbclipframe}
+                \coordinate (X) at ([xshift=5mm,yshift=-5mm]frame.north west);
+                \node[inner sep=1mm, color=black, font=\bfseries] at (X) {\nez};
+            \end{tcbclipframe}
+        }{}
+    }
+}
+
+\newtcolorbox{attention}[1][]{%
+    grow to left by=0.5cm, enhanced, frame hidden, left=1.25cm, right=0cm, borderline west = {0.5pt}{1cm}{red}, opacityfill=0, breakable, segmentation style={} , overlay={%
+        \ifthenelse{\value{tcbbreakpart}=1}{% seulement pour le premier morceau
+            \begin{tcbclipframe}
+                \coordinate (X) at ([xshift=5mm,yshift=-5mm]frame.north west);
+                \node[inner sep=1mm, color=black, font=\bfseries] at (X) {\large{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}};
+            \end{tcbclipframe}
+        }{}
+    }
+}
+
+
+% esthétique
+\let\oldref\ref
+\renewcommand{\ref}[1]{(\oldref{#1})}
+\newcommand{\ds}{\displaystyle}
+\usepackage{caption}
+\usepackage{multirow}
+\newcommand{\Dr}{\Delta_{\mathrm{r}}}
+\newcommand{\Df}{\Delta_{\mathrm{f}}}
+\renewcommand{\arraystretch}{1.5} % change la hauteur des cases des tableaux
+\usepackage{float}
+
+% commandes corps de texte
+\newcommand{\ext}{\text{ext}}
+\newcommand{\cste}{\text{cste}}
+\newcommand{\EI}{\mathrm{EI}}
+\newcommand{\EF}{\mathrm{EF}}
+\newcommand{\rev}{\text{rév}}
+\newcommand{\fp}{\substack{\text{forces}\\\mathclap{\text{pressantes}}}}
+\newcommand{\pg}{\substack{\text{phase}\\\text{gazeuse}}}
+
+
+
+\title{Applications du premier principe à la transformation chimique}
+\author{Guillaume \textsc{Saget},\\Professeur de Sciences Physiques au Lycée Champollion}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+    Ce chapitre est consacré à l’étude des transformations chimiques d’un point de vue de la thermodynamique (branche de la chimie appelée thermochimie). Pour ce faire, nous réutiliserons avec profit le Premier Principe énoncé dans le cours de Thermodynamique classique, via les fonctions d'état que sont l'énergie interne $U$ et l'enthalpie $H$ (paragraphe \textsf{I}). Cependant, contrairement à la Thermodynamique classique, les systèmes fermés étudiés ici sont siège d’une transformation chimique. Une fois la transformation chimique modélisée par une ou plusieurs équations de réaction\footnote{Ce qui pose le problème de savoir si les équilibres sont successifs ou simultanés... Cette question épineuse n’est plus au programme~!}, la notion d’avancement de la réaction (noté $\xi$) est introduite sans ambiguïté ($\xi$ «~mesure~» le degré d’avancement d’une réaction chimique). En d’autres termes, il faut tenir compte de la dépendance des fonctions d’état avec $\xi$. Comme $U$ et $H$ sont des fonctions d’état, et les transformations\footnote{Une transformation désigne le passage d’un état d’équilibre \textbf{des variables du système} à un autre état d’équilibre sous l’action d’une perturbation.} chimiques monobares\footnote{Une transformation est dite monobare lorsque la pression extérieure $P_0$ au système demeure constante au cours de la transformation.} et monothermes\footnote{Une transformation est dite monotherme lorsque le système demeure au contact avec une source thermique à température $T_0$ constante (c’est donc un thermostat) au cours de la transformation.}, l’étude se ramène à celles des transformations chimiques isobares\footnote{Une transformation est dite isobare si la pression du système demeure constante au cours de la transformation.} et isothermes\footnote{Une transformation est dite isotherme si la température du système demeure constante au cours de la transformation.}, via l’introduction de grandeurs thermodynamiques déduites de $U$ et $H$~: l'énergie interne de réaction et enthalpie de réaction~: $\Dr U$ et $\Dr H$. Enfin, la Thermochimie s’est construite autour d’un vocabulaire spécifique~: les états standard et état standard de référence (paragraphe \textsf{II}).
+\end{abstract}
+
+
+
+
+\section{Rappels de Thermodynamique classique concernant le premier principe}
+\subsection{Premier principe (énoncé par R. Mayer en 1850)}
+    Le premier principe, énoncé par Mayer\footnote{Le premier énoncé en 1845 du Premier Principe de la Thermodynamique est généralement attribué à Herr Julius Robert Von Mayer (1814, Heilbronn – 1878), physicien allemand. On peut cependant le lire «~entre les lignes~» dans l’ouvrage de Nicolas Léonard Sadi Carnot (1796 – 1832), physicien français, le principal obstacle à sa formulation exacte étant le fait que Carnot base son raisonnement sur la théorie du calorique, sorte de fluide responsable des transferts thermiques, ce qui correspond à une conservation de la chaleur ce que l’on sait maintenant être erronée. Comme se plaisait à le dire le poète romain~: «~\textit{Errare humanum est, sed perseverare diabolicum}~»...}, généralise le concept d’énergie mécanique et postule l’existence d’une grandeur conservative~: l’énergie totale du système.
+    
+    \begin{enonce}
+        \textbf{Énoncé~:} Soit un système fermé (système n’échangeant pas de matière avec l’extérieur). Il existe une fonction d’état extensive appelée énergie interne $U$, somme des énergies cinétiques microscopiques particulaires et des énergies potentielles d’interaction microscopiques et dont la variation au cours d’une transformation s’écrit~:
+        $$\Delta U+\Delta E_m=W+Q$$
+    \end{enonce}
+    $\Delta E_m$ désigne la variation d’énergie mécanique du système (elle est la somme des énergies cinétique macroscopique et potentielles d’interaction macroscopiques), $W$ le travail des actions mécaniques extérieures non conservatives et $Q$ le transfert thermique reçu (algébriquement) par le système au cours de la transformation.\\
+    \begin{attention}
+        \textbf{Conventions égoïstes de la Thermodynamique :}
+        $W$ et $Q$ sont des grandeurs algébriques. En particulier, si $Q>0$, le système fermé reçoit effectivement un transfert thermique. Si $Q<0$, le système cède un transfert thermique à l'extérieur.
+    \end{attention}
+    \textbf{Remarques~:} Dans le cas particulier, où le système fermé est au repos dans le référentiel du laboratoire et demeurant à $E_p$ constante, le premier principe prend la forme suivante :
+    \begin{tableau}
+        Pour la suite, on travaille avec un système fermé dont $E_m=\cste$.
+        \begin{itemize}
+            \item Approche infinitésimale du Premier Principe\\
+            Soit $\Sigma$ un système fermé dont l'énergie interne (fonction d'état) varie de $\dd{U}$ entre les dates $t$ et $t+\dd{t}$ avec :
+            $$\dd{U} = \delta W+\delta Q$$
+            \item Premier réécrit pour une transformation monobare ($P_\ext = \cste$).\\
+            Soit $\Sigma$ un système fermé.
+            $$\underset{\substack{T_i=T_0\\P_i=P_0}}{\EI} \xrightarrow[\substack{\text{transformation sous :}\\P_\ext=\cste,\ T_0=T_\ext = \cste}]{} \underset{\substack{T_f=T_0\\P_f=P_0}}{\EF}$$
+            Les transformations chimiques sont pour la plupart monobares (sous $P_\ext =\cste = P_0$), monothermes (sous $T_\ext =\cste = T_0$).\\
+            
+            Le travail fini des forces pressantes sur $\Sigma$ est :
+            $$W=-\int_{\EI}^{\EF} P_\ext \dd{V}$$
+            Le travail élémentaire est :
+            $$\delta W = -P_\ext \dd{V}$$
+            \begin{remarque}[Remarque cruciale]
+                Si la transformation est réversible, on a, tout au long de la transformation, équilibre thermique ($T=T_\ext$) et équilibre mécanique ($P=P\ext$). D'où\\
+            $$\delta W_\rev = -P\dd{V} \qq{et} W_\rev = -\int_\EI^\EF P\dd{V}$$
+            \end{remarque}
+            Ici, la transformation est monobare. D'où,
+            \begin{gather*}
+                \Delta U = W + Q_p\\
+                \implies U_f-U_I = Q_p - \int_\EI^\EF P_\ext \dd{V} =  Q_p - P_0\int_\EI^\EF \dd{V} = Q_p -P_0V_F + P_0V_I
+            \end{gather*}
+            On a à $P_0 = P_I$ à l'EI et $P_0 = P_F$ à l'EF. D'où, $[U_F + P_FV_F]-[U_I + P_IV_I] = Q_p$.\\
+            On pose $H = U+PV$ une nouvelle fonction d'état appelée \textit{enthalpie} et on obtient :
+            \begin{equation}\label{1}
+                \Delta H = Q_p
+            \end{equation}
+            \textbf{Remarques :} L'équation \ref{1} demeure licite pour une transformation isobare (sous $P=\cste$). Pour une transformation isobare élémentaire : $\dd{H} = \delta Q_p$
+        \end{itemize}
+    \end{tableau}
+    
+    Sauf exception, nous conservons le Premier principe sous cette forme.
+    
+\section{Corps pur et corps simple}
+\subsection{Corps pur}
+\begin{enonce}
+    Un \textit{corps pur} est un corps seul dans une phase.
+\end{enonce}
+\begin{tableau}
+    Contraire de corps pur : mélange.
+\end{tableau}
+\subsection{Corps simple}
+\begin{enonce}
+    Un \textit{corps simple} est un corps composé d’un seul élément.
+\end{enonce}
+\begin{tableau}
+    Exemples : $\ce{H2, O2, N2, An, Kn, O3}$, etc.
+\end{tableau}
+\subsection{Corps composé}
+\begin{enonce}
+    Un \textit{corps composé} est un corps constitué d’au moins deux éléments.
+\end{enonce}
+\begin{tableau}
+    Exemples : $\ce{H2O}$, $\ce{H2O2}$, $\chemfig{CH3-CH2-OH}$, $\chemfig{CH3-OH}$, etc. 
+\end{tableau}
+\section{États standards}
+\subsection{Définition}
+\begin{enonce}
+    L’\textit{état standard} d’un constituant, dans un état physique donné, à une température $T$ est ce constituant pris pur, à la même température $T$ et dans le même état physique, sous la pression (dite pression standard) $P^\circ = \SI{1,00e5}{Pa}$.
+\end{enonce}
+Les grandeurs thermodynamiques de ce constituant dans son état standard sont appelées grandeurs standard et notées à l’aide de l’exposant « $\circ$ ».\\
+
+\noindent\textbf{Remarques :}
+\begin{itemize}
+    \item L’état standard d’un constituant à une température donnée peut être « fictif » (l’état physique envisagé n’est pas le plus stable aux conditions $(T,P^\circ)$ envisagées).
+    \item Pour un constituant donné, il existe une infinité d’états standard (un par valeur de $T$). On donne usuellement les grandeurs thermodynamiques standard à $\SI{298}{K}$, et des relations permettent de déterminer les variations de ces grandeurs avec la température (Cf. lois de Kirchhoff au paragraphe \textsf{VI}).
+\end{itemize}
+\begin{tableau}
+    \textbf{Exemple~:} On peut définir l'état standard du dioxygène solide à la température $T=\SI{10e9}{K}$ : cet état standard est le $\ce{O2}$ pris pur dans l'état solide, à la même température $T=\SI{10e9}{K}$, sous la pression $P=P^\circ = \SI{1,00e5}{Pa} = \SI{1,00}{bar}$.\\
+    Cet état standard est fictif : sous $P^\circ$ à $T=\SI{10e9}{K}$, on a $\ce{O2}$ à l'état gazeux. (Pour les «~pinaillous~», l'état du corps simple stable sous $P^\circ$ à $T=\SI{10e9}{K}$ est $\ce{O_{(g)}}$.
+\end{tableau}
+
+\subsection{État standard d’un constituant gazeux}
+\begin{enonce}
+    L’état standard d’un constituant gazeux, corps pur ou dans un mélange, à une température $T$ est ce constituant pris pur, \textbf{dans le modèle du gaz parfait}, à la même température $T$ et dans le même état physique, sous la pression (dite pression standard) $P^\circ = \SI{1,00e5}{Pa}$.
+\end{enonce}
+\begin{tableau}
+    \textbf{Exemple} (État standard du dioxygène de l'air (en mélange avec $\ce{N2_{(g)}}$) sous $P=\SI{500}{bar}$ à $T=\SI{293}{K}$)\\
+    Dioxygène gazeux, pris pur, sous $P=P^\circ=\SI{1,00}{bar}$ à la même température $T=\SI{293}{K}$. Enfin pour $\ce{O2_{(g)}}$, on adopte le modèle du gaz parfait.
+\end{tableau}
+\subsection{État standard d'un constituant en phase condensée}
+\begin{enonce}
+    L’état standard d’un constituant dans un mélange solide (amalgame) ou liquide (liquides miscibles entre eux) ou en phase condensée pure (liquide ou solide), dans un état physique donné, à une température $T$ est \textbf{ce constituant pris pur}, à la même température $T$ et dans le même état physique, sous la pression (dite pression standard) $P^\circ = \SI{1,00e5}{Pa}$.
+\end{enonce}
+
+\subsection{État standard d’un constituant soluté}
+\begin{enonce}
+    L’état standard d’un constituant soluté, à une température $T$ est ce constituant soluté dans une solution idéale, à la
+même température $T$ et de concentration molaire $c^\circ = \SI{1,00}{\mol\per\liter}$.
+\end{enonce}
+
+\section{Grandeurs molaires partielles}
+\subsection{Position du problème}
+Nous considérons un système fermé siège d’une transformation chimique modélisée par l’équation de réaction \begin{equation}\label{2}
+    \sum_i\nu_iB_i=0
+\end{equation}
+Où $\nu_i$ est le nombre stoechiométrique algébrique de $B_i$.
+\begin{tableau}
+    On a $\nu_i<0$ si $B_i$ est réactif et $\nu_i>0$ si $B_i$ est produit.
+    
+    \textbf{Exemple :} Mise sous la forme \ref{2} de $\ce{C_{(gr)} + O2_{(g)} = CO2_{(g)}}$ :
+    $$\ce{CO2_{(g)} - C_{(gr)} - O2_{(g)}} = 0$$
+\end{tableau}
+
+\subsection{Description d’un système réactif}
+Considérons un système de $N$ constituants $B_i$ susceptibles de participer à des réactions chimiques. L’état du système est décrit par les $N+2$ variables de Gibbs $(T,P,n_i)$, où $n_i$ est la quantité du constituant $B_i$.
+
+\begin{tableau}
+    Le système est décrit par :
+    \begin{itemize}
+        \item Les deux paramètres intensifs « physiques » : $P,\,T$.
+        \item Les $N$ quantités de matière $n_i$ extensives.
+    \end{itemize}
+\end{tableau}
+
+\subsection{Grandeur molaire partielle}
+Soit $X(T,P,n_1, . . . ,n_N)$ une grandeur extensive ; la grandeur molaire partielle relative au constituant $B_i$ est $X_{mi}$ définie par :
+\begin{tableau}
+$$X_{mi}=\pdv{X}{n_i}\bigg)_{T,P,n_j\neq n_i}$$
+    \textbf{Exemples :}
+\begin{itemize}
+    \item Enthalpie molaire partielle d'un constituant $B_i$ par :
+    $$H_{mi}=\pdv{H}{n_i}\bigg)_{T,P,n_j\neq n_i}$$
+    ($H$ est une fonction adaptée aux variables $T$ et $P$)
+    \item Énergie interne molaire partielle d'un constituant $B_i$ par :
+    $$U_{mi}=\pdv{U}{n_i}\bigg)_{T,V,n_j\neq n_i}$$
+    ($U$ est une fonction adaptée aux variables $T$ et $V$)
+\end{itemize}
+Unité SI de $H_{mi}$ et $U_{mi}$ : le $\si{\joule\per\mole}$ (le chimiste préfère le $\si{\kilo\joule\per\mole}$).\\
+
+\textbf{Remarque :} Pour un corps pur\footnotemark{} $B$ de quantité de matière $n$, on définit :
+$$X_m^* = \pdv{X}{n}\bigg)_{T,P}$$
+\textbf{Exemple :} le volume molaire d'un constituant $B_{\mathrm{(s)}}$ est : $V_m^* =\pdv{V}{n}\big)_{T,P}$
+\end{tableau}
+\footnotetext{Les grandeurs thermodynamiques sont souvent affûblées d’un astérisque en exposant.}
+\textbf{Remarque :} La grandeur molaire partielle relative à un constituant dépend de la composition du milieu.
+
+\subsection{Identité de Leohnard Euler}
+L’identité d’Euler\footnote{Mathématicien et physicien suisse (prodige aux pays des prodiges) du XVIII\textsuperscript{ème} siècle (1707--1783). Le Mozart des Sciences. Sa production est trop intense pour tenir dans une simple note de bas de page...} appliquée à la grandeur extensive $X(T,P,n_1,\dots,n_N)$ s’écrit :
+\begin{tableau}
+    $$X(T,P,n_1,\dots,n_N) = \sum_{i=1}^N n_i X_{mi}(T,P,n_1,\dots,n_N)$$
+    Pour les corps pur : 
+    \begin{equation}\label{3}
+        X^*(T,P,n) = nX^*_m
+    \end{equation}
+    \textbf{Exemple :} Le volume molaire est :
+    $$\ds V_m^* =\pdv{V}{n}\bigg)_{T,P}\overset{\ref{3}}{=} \frac{V^*}{n}$$\\
+    
+    \textbf{Introduction des grandeurs molaires partielles standards}\\
+    Dans le cas général, la grandeur « $X$ » molaire partielle standard d'un constituant $B_i$ est :
+    $$X_{mi}^\circ = X_{mi}^\circ(T) = \pdv{X}{n_i}\Bigg)_{T,n_j\neq n_i}\qq{sous $P=P^\circ$}$$
+\end{tableau}
+\section{Définition et calcul des grandeurs de réaction à $T_0= \SI{298}{K}$}
+\subsection{Définition}
+\subsubsection{État standard de référence d’un élément chimique}
+\begin{enonce}
+    L'\textit{état standard de référence} d'un élément, à la température $T$, est l'état standard du corps simple (un corps simple est un corps constitué des atomes d'un seul élément) dans son état physique le plus stable à cette température.
+\end{enonce}
+\begin{tableau}
+    \textbf{Remarque :} Cette notion n'a de sens que rapportée à celle de corps simple.
+    
+    \textbf{Exemples :}
+    \begin{itemize}
+        \item État de référence de l'élément oxygène à $\SI{298}{K}$.\\
+        Corps simples de l'élément oxygène :
+\begin{tabular}{l|l|l}
+$\ce{O_{(s)}}$    & $\ce{O2_{(s)}}$    & $\ce{O3_{(s)}}$    \\
+$\ce{O_{(\ell)}}$ & $\ce{O2_{(\ell)}}$ & $\ce{O3_{(\ell)}}$ \\
+$\ce{O_{(g)}}$    & $\ce{O2_{(g)}}$    & $\ce{O3_{(g)}}$   
+\end{tabular}\\[5pt]
+    $\ce{O2_{(g)}}$ est le corps simple le plus stable à $P^\circ$ sous $T^\circ = \SI{298}{K}$ et donc c'est l'état standard de référence de l'oxygène à cette même température et sous cette même pression.
+    \end{itemize}
+\end{tableau}
+\begin{itemize}
+    \item Pour l'élément étain ($Z = 50$ symbole $\ce{Sn}$) selon la température ($T_\text{fusion} = \SI{505}{K},\   T_\text{vaporisation} = \SI{2533}{K}$) :
+\begin{table}[H]
+\begin{adjustbox}{center}
+\def\arraystretch{1.5}
+\begin{tabular}{|c|c|c|c|c|c|} 
+\hline
+Température                                                          & $T < \SI{291}{K}$                                                                    & $\SI{291}{K} < T < \SI{495}{K}$                                                         & $\SI{495}{K} < T < \SI{505}{K}$                                                             & $\SI{505}{K} < T < \SI{2533}{K}$ & $T>\SI{2533}{K}$                                                                             \\ 
+\hline
+\begin{tabular}[c]{@{}c@{}}État standard\\ de référence\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cristal d'étain\\ $\ce{Sn \alpha}$ (cubique)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cristal d'étain\\ $\ce{Sn \beta}$ (quadratique)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Cristal d'étain $\ce{Sn \gamma}$\\ (orthorhombique)\end{tabular} & Étain liquide                    & \begin{tabular}[c]{@{}c@{}}État gazeux (gaz parfait\\ monoatomique, corps pur)\end{tabular}  \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption*{Tableau 1 : États standards de référence de l'élément étain selon la température}
+\label{tab:table1}
+\end{table}
+\end{itemize}
+
+\subsubsection{Grandeur $X$ de réaction $\Dr X$}
+\begin{tableau}
+    Tableau d'avancement pour le constituant (réactif ou produit) :
+\begin{center}
+\def\arraystretch{1.5}
+\begin{tabular}{|r|l|c|}
+\hline
+\multicolumn{1}{|l|}{}                                        & \hspace{6cm} & $\nu_i B_i$                                 \\ \hline
+\begin{tabular}[c]{@{}r@{}}$\EI$\\ $\xi=0$\end{tabular}       &              & $n_{B_i}\big)_0$                            \\ \hline
+\begin{tabular}[c]{@{}r@{}}À $t$\\ $\xi \neq 0$\end{tabular}  &              & $n_{B_i}(t) = n_{B_i}\big)_0+\nu_i \xi$     \\ \hline
+\begin{tabular}[c]{@{}r@{}}$\EF$\\ $\xi = \xi_f$\end{tabular} &              & $n_{B_i}\big)_f = n_{B_i}\big)_0+\nu_i \xi_f$ \\ \hline
+\end{tabular}
+\end{center}
+
+Ainsi, cette fonction $X(T,P,n_1,\dots,n_N)$ peut être vue comme une fonction de 3 variables $X(T,P,\xi)$.\\
+
+On définit la grandeur $X$ de réaction par :
+$$\Dr X = \pdv{X}{\xi}\bigg)_{T,P}$$
+
+\textbf{Exemples :}
+\begin{itemize}
+    \item Enthalpie de réaction
+    $$\Dr H = \pdv{H}{\xi}\bigg)_{T,P}$$
+    \item Énergie interne de réaction
+    $$\Dr U = \pdv{U}{\xi}\bigg)_{T,V}$$
+\end{itemize}
+Et l'unité SI de $\Dr H$ et $\Dr U$ est le $\si{\joule\per\mol}$.
+\end{tableau}
+
+\subsubsection{Grandeur $X$ standard de réaction $\Dr X^\circ$}
+\begin{tableau}
+    On définit la grandeur $\Dr X^\circ$ par :
+    $$\Dr X^\circ = \pdv{X}{\xi}\bigg)_T\qquad \text{sous $P=P^\circ = \SI{1,00}{bar}$}$$
+\end{tableau}
+
+\subsection{Enthalpie standard de réaction à $T_0 = \SI{298}{K}$}
+\begin{tableau}
+Soit une équation chimique d'équation $\sum_i \nu_iB_i = 0$. On définit l'enthalpie standard de réaction par :
+$$\Dr H^\circ = \pdv{H}{\xi}\bigg)_T\qquad \text{sous $P=P^\circ = \SI{1,00}{bar}$}$$
+On calcule cette grandeur à $T_0 = \SI{298}{K}$.\\
+Il y a deux modes de calcul possibles :
+\begin{itemize}
+    \item À partir de la loi de Hess via les enthalpies standards de formations des constituants ($\Df H_i$ pour le constituant $B_i$).
+    \item Où $H_{mi}^\circ$ est l'enthalpie molaire standard du constituant $B_i$ (Cf. Paragraphe \textsf{IV. 4)}), on a :
+    \begin{equation}\label{4}
+        \ds\Dr H^\circ = \sum_i \nu_i H_{mi}^\circ
+    \end{equation}
+\end{itemize}
+Démontrons l'équation \ref{4}.
+\begin{itemize}
+    \item $H(T,P,\xi)$ entre $t$ et $t+\dd{t}$ a varié de $\dd{H}$ :
+    \begin{equation}\label{5}
+        \dd{H}=\pdv{H}{T}\dd{T} + \pdv{H}{P}\dd{P} + \underbrace{\pdv{H}{\xi}}_{\Dr H}\dd{\xi} 
+    \end{equation}
+    \item Par ailleurs, $H(T,P,n_1,\dots,n_N)$ avec les $n_i$ ($1\leq i \leq N$) les quantités de matière engagées dans la réaction $\sum_i \nu_iB_i=0$ varie de :
+    \begin{equation*}
+        \dd{H}=\pdv{H}{T}\dd{T} + \pdv{H}{P}\dd{P} +\sum_{i=1}^N \underbrace{\pdv{H}{n_i}}_{H_{mi}}\dd{n_i} 
+    \end{equation*}
+\end{itemize}
+Via un tableau d'avancement, on a :
+$$n_i = n_{B_i}(t) = n_{B_i}(t=0)+\nu_i\xi$$
+Avec $\nu_i>0$ si $B_i$ est produit et $\nu_i<0$ sinon.\\
+Durant $\dd{t}$, chaque $n_i$ a varié de façon élémentaire de $\dd{n_i} = \nu_i \dd{\xi}$. Il vient :
+\begin{equation}\label{6}
+    \dd{H}=\pdv{H}{T}\dd{T} + \pdv{H}{P}\dd{P} +\sum_{i=1}^N \nu_i H_{mi} \dd{\xi}
+\end{equation}
+
+Or, $\ref{5}=\ref{6}$. Puisque $\dd{\xi} \neq 0$, on en déduit :
+\begin{equation*}
+    \Dr H = \sum_{i=1}^N \nu_i H_{mi} = \Dr H(T,P,\xi)
+\end{equation*}
+Lorsque tous les constituants sont dans leur état standard, on en déduit donc :
+\begin{equation*}
+    \Dr H^\circ(T) = \sum_{i=1}^N \nu_i H_{mi}^\circ(T)
+\end{equation*}
+En particulier à $T=T_0=\SI{298}{K}$, on a :
+\begin{equation*}
+    \Dr H^\circ(T_0) = \sum_{i=1}^N \nu_i H_{mi}^\circ(T_0)
+\end{equation*}
+\end{tableau}
+
+\subsubsection{Enthalpie standard de formation}
+\begin{enonce}
+    La réaction standard de formation d'un constituant, à une température $T$ et dans un état physique donné, est la réaction au cours de laquelle une mole de ce constituant, dans son état standard, est formée à partir des corps simples correspondant aux éléments le composant. Chacun de ces corps simples doit représenter l'état standard de référence de l'élément à la température d'intérêt. $\Df H^\circ$ est l’enthalpie standard de réaction associée à la réaction standard de formation de ce constituant.
+\end{enonce}
+
+\textbf{Remarque :} Les chimistes travaillent essentiellement à une température $T_0 = \SI{298}{K}$. Aussi, les enthalpies standard de réaction sont calculées à cette température. Si la réaction chimique s’effectue à une autre température, le calcul d’une enthalpie standard à cette température se fait via l’emploi de la première formule de Gustav Kirchhoff (Cf. paragraphe \textsf{VI} (bis)).
+
+
+\begin{tableau}
+    \textbf{Exemples :}
+    \begin{itemize}
+        \item Réaction standard de formation du propane\footnotemark{} $\ce{C3H8_{(g)}}$ à $T_0 = \SI{298}{K}$.
+    $$\ce{3C_{(gr)} + 4H2_{(g)} = C3H8_{(g)}}$$
+        \begin{attention}
+            $\ce{C}$ et $\ce{H}$ sont dans leur état standard de référence (sous $P=P^\circ$, $T=T_0$) : $\ce{C}_{(s)}$ devient du carbone graphite $\ce{C_{(gr)}}$ (et non du carbone diamant $\ce{C_{(dia)}}$ par exemple) ; $\ce{H}_{(g)}$ devient $\ce{H2_{(g)}}$ (et non  $\ce{H_{(g)}}$ par exemple).
+        \end{attention}
+        L'enthalpie standard de réaction standard de formation du propane gazeux à $T_0 = \SI{298}{K}$ est donc :
+        \begin{equation*}
+            \Dr H^\circ(T_0) = \Df H^\circ (\ce{C3H8, g})
+        \end{equation*}
+        \item Réaction standard de formation de l'éthanol gazeux à $T_0 = \SI{298}{K}$ (état standard fictif)
+        $$\ce{2C_{(gr)} + 3H2_{(g)} + 1/2 O2_{(g)}} = \chemfig{CH_3 - CH_2 - OH_{(g)}}$$
+        Ici, $\Dr H^\circ (T_0) = \Df H^\circ (\chemfig{CH_3 - CH_2 - OH_{(g)}})$.
+        \begin{appnum}
+            \textbf{A.N.} Par convention\footnotemark{} : $\Df H^\circ(\ce{O2},g)=0$, $\Df H^\circ(\ce{H2},g)=0$ et $\Df H^\circ(\ce{O2},g)=0$.\\
+            D'où $\Dr H^\circ(\ce{O2,g}) = \Df H^\circ(\ce{O2,g}) = \SI{0}{\kilo\joule\per\mole}$
+        \end{appnum}
+    \end{itemize}
+\end{tableau}
+\footnotetext[10]{Formule des alcanes : $\ce{C_nH_{2n+2,\mathrm{(g)}}}$ avec $n\in\mathbb{N}^\star$.}
+\footnotetext[11]{Cette convention est « naturelle ». En effet, écrivons à $T_0 = \SI{298}{K}$ l'équation standard de formation de $\ce{O2_{(g)}}$ : $\ce{O2_{(g)}} = \ce{O2_{(g)}}$.}
+\subsubsection{Conséquences}
+\begin{itemize}
+    \item L’enthalpie standard de formation d’une espèce chimique est l’enthalpie standard de réaction de la réaction standard de formation de cette espèce ; on la note $\Df H^\circ$.
+\end{itemize}
+\begin{enonce}
+    \begin{itemize}
+        \item L’enthalpie standard de formation du corps pur simple pris dans son état standard de référence est nulle.
+    \end{itemize}
+\end{enonce}
+
+\textbf{Exemples :}
+\begin{itemize}
+    \item À $T_0 = \SI{298}{K}$, le corps simple formé à partir  de l'élément oxygène le plus stable à cette température est le dioxygène gazeux $\ce{O2_{(g)}}$.
+    $$\Df H^\circ(\ce{O2,g}) = 0\qquad \Df H^\circ(\ce{O,g}) = \SI{+249}{\kilo\joule\per\mole}\qquad \Df H^\circ(\ce{O3,g}) = \SI{+142}{\kilo\joule\per\mole}$$
+    \item À $T_0 = \SI{298}{K}$, le corps simple formé à partir  de l'élément carbone le plus stable à cette température est le carbone solide graphite $\ce{C_{(gr)}}$.
+    $$\Df H^\circ(\ce{C,gr}) = 0\qquad \Df H^\circ(\ce{C,diamant}) = \SI{+1,90}{\kilo\joule\per\mole}$$
+    \item À $T_0 = \SI{298}{K}$, le corps simple formé à partir  de l'élément fer le plus stable à cette température est le fer solide dans sa structure cristalline $\alpha$ : $\ce{Fe_{(\alpha)}}$.
+    $$\Df H^\circ(\ce{Fe,\alpha}) = 0\qquad \Df H^\circ(\ce{Fe,\gamma}) = \SI{+6,78}{\kilo\joule\per\mole}\qquad \Df H^\circ(\ce{Fe,liquide}) = \SI{+13,1}{\kilo\joule\per\mole}$$
+\end{itemize}
+
+
+\subsubsection{Lecture d'une table en thermochimie}
+\begin{table}[H]
+\centering
+\def\arraystretch{1.5}
+\begin{tabular}{|r|c|c|c|c|c|c|} 
+\hline
+\multirow{2}{*}{Substance} & \multirow{2}{*}{Phase} & $\Df H^\circ_{298}$          & $S^\circ_{298}$         & \multicolumn{3}{c|}{$c_p^\circ = a +bT + cT^{-2}$ ($\si{\joule\per\kelvin\per\mole}$)}  \\ 
+\cline{3-7}
+                           &                        & ($\si{\kilo\joule\per\mole}$) & ($\si{\joule\per\mole}$) & $a$           & $b$              & $c$                                                   \\ 
+\hline
+$\ce{Ag}$                  & solide                 & $\SI{0}{}$                    & $\SI{42,7}{}$            & $\SI{21,3}{}$ & $\SI{8,54e-3}{}$ & $\SI{1,51e5}{}$                                       \\ 
+\hline
+$\ce{Ag}$                  & liquide                & $\SI{8,94}{}$                 & $\SI{47,2}{}$            & $\SI{30,5}{}$ & -                & -                                                     \\ 
+\hline
+$\ce{AgCl}$                & solide                 & $\SI{-127}{}$                 & $\SI{96,3}{}$            & $\SI{62,3}{}$ & $\SI{4,18e-3}{}$ & $\SI{-11,3e5}{}$                                      \\
+\hline
+\end{tabular}
+\caption*{Tableau 2 : Exemple de table thermodynamique à la température $T_0 = \SI{298}{K}$ }
+\end{table}
+
+\subsubsection{Loi de Hess et enthalpie standard de réaction}
+\begin{enonce}
+    Si l'équation-bilan d'une réaction peut être écrite sous la forme d'une combinaison linéaire de plusieurs équations-bilans, l'enthalpie standard de cette réaction, à une température $T$, s'obtient, à partir des enthalpies standard des différentes réactions à la même température, par une combinaison linéaire faisant intervenir les mêmes coefficients.
+\end{enonce}
+Ce théorème constitue la loi de Hess. Elle est une \textbf{conséquence du caractère « fonction d'état » de l'enthalpie}. 
+
+\subsubsection{Application de la loi de Hess : calcul d'une enthalpie standard de réaction}
+
+\begin{tableau}
+    Raisonnement à partir d'un exemple~: combustion du butane.
+    
+    \tcbline
+    \begin{center}
+    \begin{tikzpicture}[-latex, node distance=0]
+        %Équation chimique
+        \node (butane) at (0,0) {\Large{$\ce{C4H10_{(g)}}$}};
+        \node (premplus) [right = of butane] {\Large$+$};
+        \node (dioxygene) [right = of premplus] {\Large$\ce{13/2 O2_{(g)}}$};
+        \node (egal) [right =  of dioxygene] {\Large$=$};
+        \node (eau) [right = of egal] {\Large$\ce{5H2O_{(\ell)}}$};
+        \node (deuxplus) [right = of eau] {\Large$+$};
+        \node (co2) [right = of deuxplus] {\Large$\ce{4CO2_{(g)}}$};
+        
+        %Étapes fictives
+        \node (ch2) [below = 3 of butane] {$\ce{4C_{(gr)} + 5H2_{(g)}}$};
+        \node (o2) [above = 3 of dioxygene] {$\ce{+13/2 O2_{(g)}}$};
+        \node (h2o2) [below = 3 of eau] {$\ce{+5H2_{(g)} + 5/2 O2_{(g)}}$};
+        \node (cpo2) [above = 3 of co2] {$\ce{4C_{(gr)} + 4O2_{(g)}}$};
+        
+        %flèches
+        \draw[shorten <=5pt] (butane) -- (ch2) node [midway, right] {$-\Df H^\circ (\ce{C4H10,g})$};
+        \draw[shorten <=5pt] (dioxygene) -- (o2) node [midway, left, yshift=13.5pt] {$-\frac{13}{2}\overbrace{\Df H^\circ (\ce{O2,g})}^{\mathclap{\substack{=0\text{ car oxygène}\\\text{dans son état}\\\text{standard de réf.}}}}$};
+        \draw[shorten >=5pt] (h2o2) -- (eau) node [midway, right] {$+5\Df H^\circ (\ce{H2O,\ell})$};
+        \draw[shorten >=5pt] (cpo2) -- (co2) node [midway, left] {$+4\Df H^\circ (\ce{CO2,g})$};
+    
+        % Encadrement
+        \draw[red,line width=1pt] ($(butane.north west)+(-4pt,4pt)$)  rectangle ($(co2.south east)+(4pt,-4pt)$);
+    \end{tikzpicture}
+    \end{center}
+
+    Via la loi de Hess, on a :
+    \begin{align*}
+        \Dr H^\circ &= \Delta_{\substack{\mathrm{combustion}\\\ce{C4H10_{(g)}}}} H^\circ\\
+        &= 5\Df H^\circ(\ce{H2O,\ell}) + 4\Df H^\circ (\ce{CO2,g}) - \frac{13}{2} \Df H^\circ(\ce{O2,g})-\Df H^\circ (\ce{C4H10,g)}\\
+        & = \sum_i \nu_i \Df H_i^\circ
+    \end{align*}
+    \begin{attention}
+        Les $\nu_i$ sont algébriques.
+    \end{attention}
+    Si,
+    \begin{itemize}
+        \item $\Dr H^\circ =0$ : la réaction est athermique.
+        \item $\Dr H^\circ >0$ : la réaction est endothermique.
+        \item $\Dr H^\circ <0$ : la réaction est exothermique.
+    \end{itemize}
+    \begin{appnum}
+        \textbf{A.N.} Ici, on a $\Dr H^\circ = \SI{-2878}{\kilo\joule\per\mole} <0$ : la réaction libère de la chaleur et est dite exothermique.
+    \end{appnum}
+\end{tableau}
+\begin{remarque}[{Données à $T_0 = \SI{298}{K} $}]
+    $\Df H^\circ(\ce{C4H10,g}) = \SI{-124,8}{\kilo\joule\per\mole}$~; $\Df H^\circ (\ce{CO2,g}) = \SI{-393,5}{\kilo\joule\per\mole}$~;  $\Df H^\circ(\ce{H2O,\ell}) = \SI{-285,8}{\kilo\joule\per\mole}$~; $\Df H^\circ(\ce{O2, g}) = 0$.
+    \end{remarque}
+\begin{enonce}[Généralisation du résultat]
+Toute équation-bilan peut être écrite comme la somme des équations-bilans de formation de chaque constituant, affectées du nombre stoechiométrique algébrique correspondant, soit~:
+$$\Dr H^\circ=\sum_i\nu_i\Df H_i^\circ$$
+\end{enonce}
+
+%\subsubsection{Pourquoi introduire les enthalpies standard de formation ?}
+\subsection{Comment calculer les enthalpies et entropies standards de formation ?}
+\begin{tableau}
+    Deux formulations possibles pour calculer une enthalpie ou une entropie standard de réaction
+    \tcbline
+    Pour $\Dr H^\circ$ :
+    \begin{itemize}
+        \item Loi de Hess :
+        \begin{equation}\label{form1}
+            \Dr H^\circ = \sum_i\nu_i \Df H_i^\circ
+        \end{equation}
+        \item Ou bien :
+        \begin{equation*}
+            \Dr H^\circ = \sum_i\nu_i H_{mi}^\circ
+        \end{equation*}
+    \end{itemize}
+    Pour $\Dr S^\circ$ :
+    \begin{itemize}
+        \item
+        \begin{equation*}
+            \Dr S^\circ = \sum_i\nu_i \Df S_i^\circ
+        \end{equation*}
+        \item
+        \begin{equation}\label{form2}
+            \Dr S^\circ = \sum_i\nu_i S_{mi}^\circ
+        \end{equation}
+    \end{itemize}
+    
+    En Thermodynamique, le troisième principe fixe le zéro de l'entropie d'un corps. En revanche, il n'existe pas de quatrième principe fixant le zéro de $H$. Ainsi, pour calculer $\Dr H^\circ$, on privilégie la loi de Hess \ref{form1} et pour calculer $\Dr S^\circ$, on privilégie \ref{form2}.\\
+    
+    \textbf{Rappel :} (principe énoncé par Walter Nernst en 1918)
+    \begin{enonce}[Troisième principe de la Thermodynamique]
+    L'entropie d'un corps pur parfaitement cristallisé à $T=\SI{0}{K}$ à $P= P^\circ$ est prise nulle.
+    \end{enonce}
+    
+    \begin{remarque}[Remarque]
+         L'entropie standard de réaction ($\Dr S^\circ$) est du même signe que $\Dr \nu_\mathrm{gaz} = \sum_i \nu_{i,\mathrm{gaz}}$.
+    \end{remarque}
+    
+    \textbf{Exemple :} $\ce{C_{(gr)} + 1/2O2_{(g)} = CO_{(g)}}$\\
+    On a $\Dr \nu_\mathrm{gaz} = +1-\frac{1}{2} = \frac{1}{2}<0$. D'où $\Dr S^\circ<0$.
+\end{tableau}
+
+
+\section{Calcul des grandeurs standard de réaction en fonction de la température $T$}
+\subsection{Capacités thermiques molaires standard à pression constante (voir lecture d’une table)}
+Conformément au programme, les capacités thermiques standard à pression constante seront par la suite supposées (modèle grossier) indépendantes de la température.
+
+\subsection{Enthalpie standard de réaction à la température $T$ : première formule de G. Kirchhoff}
+La première formule de Kirchhoff (1824--1889) permet de calculer une enthalpie standard de réaction à une température autre que $T_0= \SI{298}{K}$. Dans le cas général, elle énonce que :
+\begin{equation*}
+    \Dr H^\circ (T) =\Dr H^\circ (T_0) + \int_{T_0}^T \Dr C_p^\circ (\Tilde{T})\dd{\Tilde{T}}
+\end{equation*}
+Avec $C_p^\circ (T)=\sum_i\nu_i C_{pmi}^\circ(T)$ où $C_{pmi}^\circ(T)$ est la capacité thermique molaire standard à pression constante d'un constituant.
+\begin{tableau}
+    Démonstration
+    \tcbline
+    \textbf{Prérequis :} Définition « chimiste » de $C_{pmi}^\circ$
+    $$C_{pmi}^\circ = \dv{H_i^\circ}{T} = C_{pmi}^\circ(T)$$
+    
+    \textbf{Point de départ :} $\Dr H^\circ = \sum_i\nu_i H_{mi}^\circ$. En effet, cela donne :
+    $$\dv{\Dr H^\circ}{T} = \sum_i \nu_i \underbrace{\dv{H_{mi}^\circ}{T}}_{C_{pmi}^\circ}$$
+    On sépare les variables en sachant que $\dd(\Dr H^\circ) = \sum_i \nu_i \dd{H_{mi}^\circ}$ :
+    $$\int_{T_0}^T \dd(\Dr H^\circ) = \Dr H^\circ(T) - \Dr H^\circ(T_0) = \sum_i\nu_i \int_{T_0}^T \dd{H_{mi}^\circ} $$
+    On pose $\Dr HC_p^\circ = \sum_i \nu_i C_{pmi}^\circ$ et on obtient :
+    $$\Dr H^\circ (T) =\Dr H^\circ (T_0) + \int_{T_0}^T \Dr C_p^\circ (\Tilde{T})\dd{\Tilde{T}}$$
+    
+    \textbf{Cas particulier :} $C_{pmi}^\circ$ indépendants de la température :
+    $$\Dr H^\circ (T) =\Dr H^\circ (T_0) + \underbrace{\bigg(\sum_i\nu_i C_{pmi}^\circ(T)\bigg)}_{\Dr C_p^\circ}(T-T_0)$$
+\end{tableau}
+
+\subsection{Entropie standard de réaction à la température $T$ : deuxième formule de G. Kirchhoff}
+La deuxième formule de Kirchhoff (1824--1889) permet de calculer une entropie standard de réaction à une température autre que $T_0= \SI{298}{K}$. Dans le cas général, elle énonce que\footnote{La démonstration de $\dv{S_{mi}^\circ}{T} = \frac{C_{pmi}^\circ}{T}$ requiert d’introduire l’enthalpie libre standard de réaction $\Dr G^\circ$ (Cf. C2) dont une des définitions est $\Dr G^\circ(T) = \Dr H^\circ(T) -T\Dr S^\circ(T)$ ainsi que la formule $\dv{\Dr G^\circ}{T} = -\Dr S^\circ$.} :
+\begin{equation*}
+    \Dr S^\circ (T) =\Dr S^\circ (T_0) + \int_{T_0}^T \frac{\Dr C_p^\circ (\Tilde{T})}{\Tilde{T}} \dd{\Tilde{T}}
+\end{equation*}
+Avec $C_p^\circ (T)=\sum_i\nu_i C_{pmi}^\circ(T)$ où $C_{pmi}^\circ(T)$ est la capacité thermique molaire standard à pression constante d'un constituant.
+
+\begin{tableau}
+        \textbf{Cas particulier :} $C_{pmi}^\circ$ indépendants de la température :
+    $$\Dr S^\circ (T) =\Dr S^\circ (T_0) + \underbrace{\bigg(\sum_i\nu_i C_{pmi}^\circ(T)\bigg)}_{\Dr C_p^\circ}\ln\bigg(\frac{T}{T_0}\bigg)$$
+    
+    \begin{attention}
+        La première formule de Kirchhoff ressemble au premier principe de la Thermodynamique écrit avec la fonction enthalpie MAIS ce n’est pas le cas ! Les deux formules de Kirchhoff ne servent qu’à expliciter le calcul des enthalpie et entropie standard de réaction à une température $T$ autre que $T_0 = \SI{298}{K}$.
+    \end{attention}
+\end{tableau}
+
+\section{Variation des fonctions d’état d’un système fermé siège d’une transformation chimique}
+\subsection{Transferts thermiques}
+\subsubsection{Transformation monobare et monotherme}
+Soit un système de $N$ constituants siège d’une transformation chimique modélisée par l’équation de réaction $\sum_i\nu_iB_i=0$ ($\nu_i$ nombre stoechiométrique algébrique : $\nu_i>0$ si le constituant $B_i$ est produit, et $\nu_i<0$ si le constituant $B_i$ est un réactif). La transformation chimique est monobare et monotherme (ou isobare et isotherme).
+
+\begin{tableau}
+    \begin{equation*}
+        \Delta H = Q_p \approx \Dr H^\circ(T_0)\times \xi_f
+    \end{equation*}
+    \tcbline
+    \textbf{Restriction de la démonstration :} la réaction chimique est isobare (sous $P=P_\ext=\cste$) et isotherme ($T=T_\ext=\cste$).\\
+    
+    On invoque le premier principe de la Thermodynamique ($H$ est une fonction adaptée aux transformations monobares et isobares) :
+    $$\EI \xrightarrow[]{\Delta H = Q_p} \EF$$
+    Entre $t$ et $t+\dd{t}$, l'enthalpie du système du système a varié d'une quantité élémentaire $\dd{H}$ :
+    \begin{align*}
+        \dd{H}&=\pdv{H}{T}\underbrace{\dd{T}}{=0} + \pdv{H}{P}\underbrace{\dd{P}}_{=0} + \underbrace{\pdv{H}{\xi}}_{\Dr H}\dd{\xi} \\
+        &=\Dr H(T,P,\xi)\dd{\xi}
+    \end{align*}
+    \textbf{Approximation :} Tous les constituants sont dans leur état standard : $\Dr H \approx \Dr H(T=T_0)$.\\
+    D'où,
+    \begin{equation*}
+        \dd{H} = \underbrace{\Dr H^\circ(T_0)}_{\mathclap{\substack{\text{constante puisque}\\\text{transfo. isotherme}}}} \times \dd{\xi}
+    \end{equation*}
+    Il vient :
+    \begin{align*}
+        \Delta H &= \int_\EI^\EF \dd{H} = \int_{\xi_i}^{\xi_f} \Dr H^\circ(T)\dd{\xi} = \Dr H^\circ(T)\big(\xi_f-\underset{\substack{\downarrow\\=0}}{\xi_i}\big)\\
+        &= \Dr H^\circ(T)\times \xi_f
+    \end{align*}
+    
+    \begin{remarque}[Remarque]
+        Pour une transformation isotherme à $T_0$ et isochore, le premier principe donne :
+    $$\Delta U = \underbrace{W_{\fp}}_{\mathclap{=-\int_\EI^\EF P_\ext \dd{V} = 0}} + Q_v$$
+    D'où $\Delta U = Q_v \approx \Dr U^\circ (T_0) \xi_f$\\
+    
+    Formule à retenir et à utiliser :\\
+    \begin{equation*}
+        \Dr H^\circ = \Dr U^\circ +  RT\sum_i \nu_{i,\mathrm{gaz}}
+    \end{equation*}
+    \end{remarque}
+    
+    Pour une phase condensée : $\Delta H \approx \Delta U$.\\
+    Dans un réacteur fermé siège d'une transformation chimique,
+    $$H = U +PV \approx U+ (PV)_{\pg}$$
+    En chimie, on adopte le modèle du Gaz Parfait (GP) :
+    \begin{equation}\label{9}
+        (PV)_{\pg} = nRT = RT\sum_{i=1}^N n_i
+    \end{equation}
+    Où les $n_i$ sont les quantités de matière des $N$ constituants.
+    
+    Or, via un tableau d'avancement pour chaque constituant gazeux $B_i$ :
+    $$n_i = n_{B_i} = n_{B_i}(t=0) + \nu_i \xi$$
+    
+    On dérive partiellement \ref{9} par rapport à $\xi$ à $T$ et $P$ fixés :
+    \begin{align*}
+        \pdv{H}{\xi} &\approx \pdv{U}{\xi} + \pdv{\xi}(RT\sum_{i=1}^N n_i)\\
+        \implies \Dr H&\approx \Dr U + RT\pdv{\xi}(\sum_{i=1}^N n_i)\\
+        &\approx \Dr U + RT\sum_{i=1}^N \pdv{n_i}{\xi} = \Dr U + RT\sum_{i=1}^N \nu_{i,\mathrm{gaz}}
+    \end{align*}
+    Lorsque tous les constituants sont dans leur état standard :
+    \begin{equation*}
+        \Dr H^\circ\approx \Dr U^\circ + RT \sum_i \nu_{i,\mathrm{gaz}}
+    \end{equation*}
+\end{tableau}
+
+\subsubsection{Que retenir ?}
+\begin{important}
+    \begin{itemize}[leftmargin=5pt]
+        \item Réaction athermique : le système n'échange pas de chaleur avec l’extérieur ; $Q_p = \Delta H \approx \Dr H^\circ\times \xi_f = 0$ ($\Dr H^\circ = 0$).
+        \item Réaction endothermique : le système reçoit de la chaleur de l’extérieur ; $Q_p = \Delta H \approx \Dr H^\circ\times \xi_f  > 0$ ($\Dr H^\circ > 0$ si évolution dans le sens direct : $\xi_f > 0$).
+        \item Réaction exothermique : le système cède de la chaleur à l’extérieur ; $Q_p = \Delta H \approx \Dr H^\circ\times \xi_f  < 0$ ($\Dr H^\circ < 0$ si évolution dans le sens direct : $\xi_f > 0$).
+    \end{itemize}
+\end{important}
+\begin{itemize}
+    \item Lorsqu’une réaction exothermique se déroule dans un \textbf{réacteur adiabatique}, la chaleur dégagée sert à chauffer les constituants du système ; la température maximale atteinte pour une réaction \textbf{monobare} est appelée \textbf{température de flamme} (voir exercice n°5 du TD C1).
+    \item \textbf{Réaction isochore et monotherme.} La quantité de chaleur échangée est donnée par $Q_V = \Delta U \approx \Dr U^\circ \times \xi_f$. Lorsqu’une réaction exothermique se déroule dans un \textbf{réacteur adiabatique}, la chaleur dégagée sert à chauffer les constituants du système ; la température maximale atteinte pour une réaction \textbf{isochore} est appelée \textbf{température d’explosion adiabatique} (voir exercice n°6 du TD C1).
+    \item Le calcul des variations d’enthalpie de constituants gazeux ou de constituants purs en phase condensée est rappelé en \textbf{\textsf{Annexe n°1}}.
+    \item Le calcul des variations d’énergie interne de constituants gazeux ou de constituants purs en phase condensée est rappelé en \textbf{\textsf{Annexe n°2}}.
+
+\end{itemize}
+
+
+\pagebreak
+\section*{Annexes}
+\subsection*{Annexe n°1 : Calcul des variations d’enthalpie de constituants}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+Constituant pur                                                              & Variation d’enthalpie                                 & \begin{tabular}[c]{@{}c@{}}Variation d’enthalpie\\dans le modèle du corps\\incompressible\end{tabular} & \begin{tabular}[c]{@{}c@{}}Variation d’enthalpie\\dans le modèle du corps\\indéformable\end{tabular}  \\ 
+\hline
+Gazeux (gaz parfait)                                                         & $\Delta H = nC_{pm}^\circ(T_f-T_i)$                   & -                                                                                                      & -                                                                                                     \\ 
+\hline
+\begin{tabular}[c]{@{}c@{}}Constituant pur en\\phase condensée\end{tabular} & $\ds\Delta H = n\int_{T_i}^{T_f}C_{pm}^\circ(T,P)\dd{T}$ & $\ds\Delta H = n\int_{T_i}^{T_f} C_{pm}^\circ(T,P)\dd{T}$                                                 & $\Delta H = nC_{pm}^\circ(T_f-T_i)$                                                                   \\
+\hline
+\end{tabular}
+\end{center}
+
+Dans la table, on note :
+\begin{itemize}
+    \item $T_i$ et $T_f$ les températures initiale et finale ;
+    \item $C_{pm}^\circ$ la capacité thermique molaire standard à pression constante du constituant ;
+    \item $n$ la quantité de matière du constituant.
+\end{itemize}
+
+
+\subsection*{Annexe n°2 : Calcul des variations d’énergie interne de constituants}
+\begin{center}
+\begin{tabular}{|c|c|c|c|} 
+\hline
+Constituant pur                                                              & Variation d’énergie interne                              & \begin{tabular}[c]{@{}c@{}}Variation d’énergie interne\\dans le modèle du corps\\incompressible\end{tabular} & \begin{tabular}[c]{@{}c@{}}Variation d’énergie interne\\dans le modèle du corps\\indéformable\end{tabular}  \\ 
+\hline
+Gazeux (gaz parfait)                                                         & $\Delta U = nC_{vm}^\circ(T_f-T_i)$                      & -                                                                                                            & -                                                                                                           \\ 
+\hline
+\begin{tabular}[c]{@{}c@{}}Constituant pur en\\phase condensée\end{tabular} & $\ds\Delta U = n\int_{T_i}^{T_f}C_{vm}^\circ(T,P)\dd{T}$ & $\ds\Delta U = n\int_{T_i}^{T_f} C_{vm}^\circ(T,P)\dd{T}$                                                    & $\Delta U = nC_{vm}^\circ(T_f-T_i)$                                                                         \\
+\hline
+\end{tabular}
+\end{center}
+
+Dans la table, on note :
+\begin{itemize}
+    \item $T_i$ et $T_f$ les températures initiale et finale ;
+    \item $C_{vm}^\circ$ la capacité thermique molaire standard à volume constant du constituant ;
+    \item $n$ la quantité de matière du constituant.
+\end{itemize}
+
+\begin{remarque}[Remarques (Cf. Cours C2)]
+    \begin{itemize}
+        \item Dans le modèle des corps incompressibles, les capacités thermiques molaires à volume et pression constantes ne dépendent pas du volume ou de la pression.
+        \item Dans le modèle des corps indilatables, les capacités thermiques molaires à volume et pression constantes ne dépendent pas de la température.
+        \item Dans le modèle des corps indéformables (indilatables et incompressibles), les capacités thermiques molaires à volume et pression constantes sont constantes. \textbf{C’est le modèle communément utilisé en MP.}
+        \item \textbf{Pour des phases condensées pures indéformables, on a :} $C_{vm}^\circ \approx C_{pm}^\circ \approx C^\circ$  ($C^\circ$ est la capacité thermique molaire standard du constituant).
+        \item \textbf{Pour le gaz parfait, on a :} $C_{pm}^\circ - C_{vm}^\circ = R$ (relation de Rudolf Mayer).
+    \end{itemize}
+\end{remarque}
+\end{document}
